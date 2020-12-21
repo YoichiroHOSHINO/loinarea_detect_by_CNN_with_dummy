@@ -66,7 +66,7 @@ for i in tqdm(range(10)):
     cv2.imwrite('./bwimg/mask_'+str(i)+'.bmp', bwimg)
 
 
-# 矩形回転関数
+
 def rotatedRectangle(img, rotatedRect, color, thickness=1, lineType=cv2.LINE_8, shift=0):
     (x,y), (width, height), angle = rotatedRect
     angle = math.radians(angle)
