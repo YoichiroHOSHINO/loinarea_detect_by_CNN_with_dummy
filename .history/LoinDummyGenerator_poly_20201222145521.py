@@ -17,12 +17,12 @@ for i in tqdm(range(10)):
     outcenterx = width/2 + rand()*width/10 - width/20
     outcentery = height/2 + rand()*height/10 - height/20
     # 領域のv,hサイズを200～250の範囲でランダムに決定。
-    outrangev = rand()*50 + 230
-    outrangeh = rand()*50 + 230
+    outrangev = rand()*50 + 200
+    outrangeh = rand()*50 + 200
     # 領域を±90度の範囲で回転。
     outangle = rand()*180-90
     # 領域の頂点の数
-    outpoints = 3 + int(rand()*8)
+    outpoints = 4 + int(rand()*8)
 
     # ロース芯を２つの楕円で表現
     # ロース芯１の中心座標xを脂肪領域中心－0～50で決定。
@@ -57,60 +57,44 @@ for i in tqdm(range(10)):
     # 多角形描画
     img = np.full((height, width, 1), np.float(255), dtype=np.uint8)
 
-    outpts = []
-    outbaseangle = int(360/outpoints)
-    angle = 0 - rand()*outbaseangle*0.2
+    outpts = np.empty((0,2))
+    pointangle = int(365/outpoints)
+    angle = rand()*pointangle
+    frad = math.radians(angle)
+    firstr = outrangev + rand()*(outrangeh - outrangev)
+    outpts = np.append(outpts,np.array([firstr/np.cos(frad),firstr/np.sin(frad)]), axis = 0)
 
-    while angle < 360:
-        angle = angle + outbaseangle
+    for p in range(outpoints-1):
+        angle = angle + pointangle
         rad = math.radians(angle)
-        r = (outrangev + rand()*(outrangeh - outrangev))/2
-        outpts.append([outcenterx + r*np.cos(rad), outcentery + r*np.sin(rad)])
-        angle = angle - rand()*outbaseangle*0.2
+        r = outrangev + rand()*(outrangeh - outrangev)
+        outpts = np.append(outpts,np.array([r/np.cos(rad),r/np.sin(rad)]), axis = 0)
     
-    pts = np.array(outpts).reshape((-1,1,2)).astype(np.int32)
-    img = cv2.fillPoly(img, [pts] , color = 0)
 
-    loin1pts = []
-    loin1baseangle = int(360/loin1points)
-    angle = 0 - rand()*loin1baseangle*0.2
-
-    while angle < 360:
-        angle = angle + loin1baseangle
-        rad = math.radians(angle)
-        r = (loin1rangev + rand()*(loin1rangeh - loin1rangev))/2
-        loin1pts.append([loin1centerx + r*np.cos(rad), loin1centery + r*np.sin(rad)])
-        angle = angle - rand()*loin1baseangle*0.2
-    
-    pts1 = np.array(loin1pts).reshape((-1,1,2)).astype(np.int32)
-    img = cv2.fillPoly(img, [pts1] , color = 255)
-
-    loin2pts = []
-    loin2baseangle = int(360/loin2points)
-    angle = 0 - rand()*loin2baseangle*0.1
-
-    while angle < 360:
-        angle = angle + loin2baseangle
-        rad = math.radians(angle)
-        r = (loin2rangev + rand()*(loin2rangeh - loin2rangev))/2
-        loin2pts.append([loin2centerx + r*np.cos(rad), loin2centery + r*np.sin(rad)])
-        angle = angle - rand()*loin2baseangle*0.2
-    
-    pts2 = np.array(loin2pts).reshape((-1,1,2)).astype(np.int32)
-    img = cv2.fillPoly(img, [pts2] , color = 255)
+    img = cv2.polylines(img, outpts, isClosed, color, thickness=1, shift=0)
 
 
-    marble = rand(width, height, 1)
-    marble = np.where(marble <= marblerate, np.float(0), np.float(1))
+    #marble = rand(width, height, 1)
+    #marble = np.where(marble <= marblerate, np.float(0), np.float(1))
     img = img * marble
     img = 255 - img
 
-    bwimg = np.full((height, width, 1), np.float(0), dtype=np.uint8)
-    bwimg = cv2.fillPoly(bwimg, [pts1] , color = 255)
-    bwimg = cv2.fillPoly(bwimg, [pts2] , color = 255)
+    #bwimg = np.full((height, width, 1), np.float(0), dtype=np.uint8)
+    #bwimg = cv2.ellipse(bwimg, ,axis=0((loin1centerx,loin1centery), (loin1ran
+    # 変換gev, loin1rangeh), loin1angle), 255, thickness=-1)
+    #bwimg = cv2.ellipse(bwimg, ((loin2centerx,loin2centery), (log
     cv2.imwrite('./img/demo_'+str(i)+'.bmp', img)
-    cv2.imwrite('./bwimg/mask_'+str(i)+'.bmp', bwimg)
+    #cv2.imwrite('./bwimg/mask_'+str(i)+'.bmp', bwimg)
 
 
+# 矩形回転関数,axis=0
+ 
+#img = np.zeros((300, 300, 3), np.uint8)
+#rotatedRect = ((150, 150), (200, 120), 20)
+#rotatedRectangle(img, rotatedRect, (255, 255, 0))
+ 
+#cv2.imshow('img', img)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
 
 # %%

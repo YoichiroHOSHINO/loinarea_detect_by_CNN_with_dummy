@@ -47,7 +47,7 @@ for i in tqdm(range(10)):
     # 疑似脂肪交雑レート
     marblerate = rand()*0.5
 
-
+    # 楕円描画
     img = np.full((height, width, 1), np.float(255), dtype=np.uint8)
     img = cv2.ellipse(img, ((outcenterx,outcentery), (outrangev, outrangeh), outangle), np.float(0), thickness=-1)
     img = cv2.ellipse(img, ((loin1centerx,loin1centery), (loin1rangev, loin1rangeh), loin1angle), np.float(255), thickness=-1)
@@ -102,12 +102,12 @@ def rotatedRectangle(img, rotatedRect, color, thickness=1, lineType=cv2.LINE_8, 
     cv2.polylines(img, [points], True, color, thickness, lineType, shift)
     return img
  
-img = np.zeros((300, 300, 3), np.uint8)
-rotatedRect = ((150, 150), (200, 120), 20)
-rotatedRectangle(img, rotatedRect, (255, 255, 0))
+#img = np.zeros((300, 300, 3), np.uint8)
+#rotatedRect = ((150, 150), (200, 120), 20)
+#rotatedRectangle(img, rotatedRect, (255, 255, 0))
  
-cv2.imshow('img', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+#cv2.imshow('img', img)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
 
 # %%
