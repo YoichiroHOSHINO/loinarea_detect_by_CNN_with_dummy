@@ -20,7 +20,7 @@ for i in tqdm(range(10)):
     # 領域を±90度の範囲で回転。
     outangle = rand()*180-90
     # 領域の頂点の数
-    outpoints = 6 + int(rand()*8)
+    outpoints = 3 + int(rand()*8)
 
     # ロース芯を２つの楕円で表現
     # ロース芯１の中心座標xを脂肪領域中心－0～50で決定。

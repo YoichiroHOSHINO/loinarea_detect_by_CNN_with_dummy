@@ -15,12 +15,12 @@ for i in tqdm(range(10)):
     outcenterx = width/2 + rand()*width/10 - width/20
     outcentery = height/2 + rand()*height/10 - height/20
     # 領域のv,hサイズを200～250の範囲でランダムに決定。
-    outrangev = rand()*50 + 230
-    outrangeh = rand()*50 + 230
+    outrangev = rand()*50 + 200
+    outrangeh = rand()*50 + 200
     # 領域を±90度の範囲で回転。
     outangle = rand()*180-90
     # 領域の頂点の数
-    outpoints = 6 + int(rand()*8)
+    outpoints = 3 + int(rand()*8)
 
     # ロース芯を２つの楕円で表現
     # ロース芯１の中心座標xを脂肪領域中心－0～50で決定。
@@ -69,6 +69,10 @@ for i in tqdm(range(10)):
     pts = np.array(outpts).reshape((-1,1,2)).astype(np.int32)
     img = cv2.fillPoly(img, [pts] , color = 0)
 
+    # 黒塗りの脂肪領域(楕円形）を作製
+    img = cv2.ellipse(img, ((outcenterx,outcentery), (outrangev, outrangeh), outangle), np.float(0), thickness=-1)
+    
+
     # 白塗りのロース芯画像多角形１を作製
     loin1pts = []
     loin1baseangle = int(360/loin1points)
@@ -82,6 +86,9 @@ for i in tqdm(range(10)):
     pts1 = np.array(loin1pts).reshape((-1,1,2)).astype(np.int32)
     img = cv2.fillPoly(img, [pts1] , color = 255)
 
+    # 白塗りのロース芯画像楕円１を作製
+    img = cv2.ellipse(img, ((loin1centerx,loin1centery), (loin1rangev, loin1rangeh), loin1angle), np.float(255), thickness=-1)
+    
     # 白塗りのロース芯画像多角形２を作製
     loin2pts = []
     loin2baseangle = int(360/loin2points)
@@ -95,6 +102,10 @@ for i in tqdm(range(10)):
     pts2 = np.array(loin2pts).reshape((-1,1,2)).astype(np.int32)
     img = cv2.fillPoly(img, [pts2] , color = 255)
 
+    # 白塗りのロース芯画像楕円２を作製
+    img = cv2.ellipse(img, ((loin2centerx,loin2centery), (loin2rangev, loin2rangeh), loin2angle), np.float(255), thickness=-1)
+
+
     # 脂肪交雑ノイズを入れ、白黒反転
     marble = rand(width, height, 1)
     marble = np.where(marble <= marblerate, np.float(0), np.float(1))
@@ -105,6 +116,8 @@ for i in tqdm(range(10)):
     bwimg = np.full((height, width, 1), np.float(0), dtype=np.uint8)
     bwimg = cv2.fillPoly(bwimg, [pts1] , color = 255)
     bwimg = cv2.fillPoly(bwimg, [pts2] , color = 255)
+    bwimg = cv2.ellipse(bwimg, ((loin1centerx,loin1centery), (loin1rangev, loin1rangeh), loin1angle), 255, thickness=-1)
+    bwimg = cv2.ellipse(bwimg, ((loin2centerx,loin2centery), (loin2rangev, loin2rangeh), loin2angle), 255, thickness=-1)
 
     # ファイル書き込み
     cv2.imwrite('./img/demo_'+str(i)+'.bmp', img)
@@ -113,3 +126,5 @@ for i in tqdm(range(10)):
 
 
 # %%
+
+    

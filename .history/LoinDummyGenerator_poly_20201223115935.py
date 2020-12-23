@@ -20,17 +20,17 @@ for i in tqdm(range(10)):
     # 領域を±90度の範囲で回転。
     outangle = rand()*180-90
     # 領域の頂点の数
-    outpoints = 6 + int(rand()*8)
+    outpoints = 3 + int(rand()*8)
 
     # ロース芯を２つの楕円で表現
     # ロース芯１の中心座標xを脂肪領域中心－0～50で決定。
     loin1centerx = outcenterx - rand()*50
     # ロース芯１の中心座標yを脂肪領域中心±25で決定。
     loin1centery = outcentery + rand()*50 - 25
-    # ロース芯１の領域hを脂肪領域外縁に接する円x0.8～1.0倍に決定。外縁に触れるか触れないかの大きさに。
-    loin1rangeh = (outrangeh/2 - (outcenterx - loin1centerx))*2*(0.8 + rand()*0.2)
-    # ロース芯１の領域vをhの0.8～1.2倍に決定。
-    loin1rangev = loin1rangeh * (0.8 + rand()*0.4)
+    # ロース芯１の領域hを脂肪領域外縁に接する円x0.9～1.0倍に決定。外縁に触れるか触れないかの大きさに。
+    loin1rangeh = (outrangeh/2 - (outcenterx - loin1centerx))*2*(0.9 + rand()*0.1)
+    # ロース芯１の領域vをhの0.9～1.1倍に決定。
+    loin1rangev = loin1rangeh * (0.9 + rand()*0.2)
     # ロース芯１を±90度の範囲で回転。
     loin1angle = rand()*180-90
     # ロース芯１の頂点の数
@@ -40,10 +40,10 @@ for i in tqdm(range(10)):
     loin2centerx = outcenterx + rand()*50
     # ロース芯２の中心座標yを脂肪領域中 心±25で決定。
     loin2centery = outcentery + rand()*50 - 25
-    # ロース芯２の領域hを脂肪領域外縁に接する円x0.8～1.0倍に決定。外縁に触れるか触れないかの大きさに。
-    loin2rangeh = (outrangeh/2 - (loin2centerx - outcenterx))*2*(0.8 + rand()*0.2)
-    # ロース芯２の領域vをhの0.8～1.2倍に決定。
-    loin2rangev = loin2rangeh * (0.8 + rand()*0.4)
+    # ロース芯２の領域hを脂肪領域外縁に接する円x0.9～1.0倍に決定。外縁に触れるか触れないかの大きさに。
+    loin2rangeh = (outrangeh/2 - (loin2centerx - outcenterx))*2*(0.9 + rand()*0.1)
+    # ロース芯２の領域vをhの0.9～1.1倍に決定。
+    loin2rangev = loin2rangeh * (0.9 + rand()*0.2)
     # ロース芯２を±90度の範囲で回転。
     loin2angle = rand()*180-90 
     # ロース芯２の頂点の数
