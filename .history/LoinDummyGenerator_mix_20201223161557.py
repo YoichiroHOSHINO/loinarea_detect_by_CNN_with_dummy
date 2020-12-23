@@ -128,8 +128,8 @@ for i in tqdm(range(1000)):
     # ファイル書き込み
     #cv2.imwrite('./img/demo_'+str(i)+'.bmp', img)
     #cv2.imwrite('./bwimg/mask_'+str(i)+'.bmp', bwimg)
-    cv2.imwrite('D:/LoinDummy/mix/dummy/dummy_'+str(i)+'.bmp', img)
-    cv2.imwrite('D:/LoinDummy/mix/mask/mask_'+str(i)+'.bmp', bwimg)
+    cv2.imwrite('D:/LoinDummy/mix/dummy_'+str(i)+'.bmp', img)
+    cv2.imwrite('D:/LoinDummy/mix/mask_'+str(i)+'.bmp', bwimg)
 
 
 

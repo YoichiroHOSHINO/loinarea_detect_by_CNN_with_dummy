@@ -26,7 +26,7 @@ for i in tqdm(range(10)):
     loin1centerx = outcenterx - rand()*50
     # ロース芯１の中心座標yを脂肪領域中心±25で決定。
     loin1centery = outcentery + rand()*50 - 25
-    # ロース芯１の領域hを脂肪領域外縁に接する円x0.9～1.0倍に決定。外縁に触れるか触れないかの大きさに。
+    # ロース芯１の領域hを脂肪領域外縁に接する円x0.8～1.0倍に決定。外縁に触れるか触れないかの大きさに。
     loin1rangeh = (outrangeh/2 - (outcenterx - loin1centerx))*2*(0.9 + rand()*0.1)
     # ロース芯１の領域vをhの0.9～1.1倍に決定。
     loin1rangev = loin1rangeh * (0.9 + rand()*0.2)
