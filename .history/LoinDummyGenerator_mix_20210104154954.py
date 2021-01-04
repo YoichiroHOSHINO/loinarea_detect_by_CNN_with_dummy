@@ -86,7 +86,7 @@ for i in tqdm(range(10000)):
     while angle < 360:
         angle = angle + loin1baseangle
         rad = math.radians(angle)
-        r = (loin1rangev + rand()*(loin1rangeh - loin1rangev)*1.2)/2
+        r = (loin1rangev + rand()*(loin1rangeh - loin1rangev)*1.1)/2
         loin1pts.append([loin1centerx + r*np.cos(rad), loin1centery + r*np.sin(rad)])
         angle = angle - rand()*loin1baseangle*0.2
     pts1 = np.array(loin1pts).reshape((-1,1,2)).astype(np.int32)
@@ -102,7 +102,7 @@ for i in tqdm(range(10000)):
     while angle < 360:
         angle = angle + loin2baseangle
         rad = math.radians(angle)
-        r = (loin2rangev + rand()*(loin2rangeh - loin2rangev)*1.2)/2
+        r = (loin2rangev + rand()*(loin2rangeh - loin2rangev)*1.1)/2
         loin2pts.append([loin2centerx + r*np.cos(rad), loin2centery + r*np.sin(rad)])
         angle = angle - rand()*loin2baseangle*0.2
     pts2 = np.array(loin2pts).reshape((-1,1,2)).astype(np.int32)

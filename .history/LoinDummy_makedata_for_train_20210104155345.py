@@ -13,9 +13,9 @@ Y = []
 
 path = 'D:/LoinDummy/mix/'
 
-for i in tqdm(range(10000)):
-    dummy = np.asarray(Image.open(path + 'dummy/' + str(i) + '_dummy.bmp'))
-    mask = np.asarray(Image.open(path + 'mask/' + str(i) + '_mask.bmp'))
+for i in tqdm(range(1000)):
+    dummy = np.asarray(Image.open(path + 'dummy/dummy_' + str(i) + '.bmp'))
+    mask = np.asarray(Image.open(path + 'mask/mask_' + str(i) + '.bmp'))
     X.append(dummy)
     Y.append(mask)
 

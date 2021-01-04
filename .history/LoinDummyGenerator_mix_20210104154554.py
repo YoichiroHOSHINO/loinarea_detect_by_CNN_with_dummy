@@ -26,11 +26,11 @@ for i in tqdm(range(10000)):
 
     # ロース芯を２つの楕円で表現
     # ロース芯１の中心座標xを脂肪領域中心－0～50で決定。
-    loin1centerx = outcenterx - rand()*20
-    ovalloin1centerx = outcenterx - rand()*20
+    loin1centerx = outcenterx - rand()*50
+    ovalloin1centerx = outcenterx - rand()*50
     # ロース芯１の中心座標yを脂肪領域中心±25で決定。
-    loin1centery = outcentery + rand()*20 - 10
-    ovalloin1centery = outcentery + rand()*20 - 10
+    loin1centery = outcentery + rand()*50 - 25
+    ovalloin1centery = outcentery + rand()*50 - 25
     # ロース芯１の領域hを脂肪領域外縁に接する円x0.8～1.0倍に決定。外縁に触れるか触れないかの大きさに。
     loin1rangeh = (outrangeh/2 - (outcenterx - loin1centerx))*2*(0.8 + rand()*0.2)
     # ロース芯１の領域vをhの0.8～1.2倍に決定。
@@ -41,11 +41,11 @@ for i in tqdm(range(10000)):
     loin1points = 4 + int(rand()*8)
 
     # ロース芯２の中心座標xを脂肪領域中心＋0～50で決定。
-    loin2centerx = outcenterx + rand()*20
-    ovalloin2centerx = outcenterx + rand()*20
+    loin2centerx = outcenterx + rand()*50
+    ovalloin2centerx = outcenterx + rand()*50
     # ロース芯２の中心座標yを脂肪領域中 心±25で決定。
-    loin2centery = outcentery + rand()*20 - 10
-    ovalloin2centery = outcentery + rand()*20 - 10
+    loin2centery = outcentery + rand()*50 - 25
+    ovalloin2centery = outcentery + rand()*50 - 25
     # ロース芯２の領域hを脂肪領域外縁に接する円x0.8～1.0倍に決定。外縁に触れるか触れないかの大きさに。
     loin2rangeh = (outrangeh/2 - (loin2centerx - outcenterx))*2*(0.8 + rand()*0.2)
     # ロース芯２の領域vをhの0.8～1.2倍に決定。
@@ -86,7 +86,7 @@ for i in tqdm(range(10000)):
     while angle < 360:
         angle = angle + loin1baseangle
         rad = math.radians(angle)
-        r = (loin1rangev + rand()*(loin1rangeh - loin1rangev)*1.2)/2
+        r = (loin1rangev + rand()*(loin1rangeh - loin1rangev)*1.1)/2
         loin1pts.append([loin1centerx + r*np.cos(rad), loin1centery + r*np.sin(rad)])
         angle = angle - rand()*loin1baseangle*0.2
     pts1 = np.array(loin1pts).reshape((-1,1,2)).astype(np.int32)
@@ -102,7 +102,7 @@ for i in tqdm(range(10000)):
     while angle < 360:
         angle = angle + loin2baseangle
         rad = math.radians(angle)
-        r = (loin2rangev + rand()*(loin2rangeh - loin2rangev)*1.2)/2
+        r = (loin2rangev + rand()*(loin2rangeh - loin2rangev)*1.1)/2
         loin2pts.append([loin2centerx + r*np.cos(rad), loin2centery + r*np.sin(rad)])
         angle = angle - rand()*loin2baseangle*0.2
     pts2 = np.array(loin2pts).reshape((-1,1,2)).astype(np.int32)

@@ -22,7 +22,7 @@ path = 'D:/LoinDummy/mix/'
 # 学習用画像データセットのパスを指定してください。
 X = np.load(path + 'LoinDummy_mix_img_for_train_210104.npy')  
 # 学習用座標データセットのパスを指定してください。
-Y = np.load(path + 'LoinDummy_mix_label_for_train_210104.npy')
+Y = np.load(path + 'LoinDummy_mix_label_for_train210104.npy')
 
 # 任意の試験名を指定してください。出力結果はすべてこの名前＋αが付けられます。
 testname = 'LoinDummy_mix_train_210104'
