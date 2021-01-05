@@ -21,16 +21,15 @@ from keras.utils import plot_model
 path = 'D:/LoinDummy/mix/'
 
 # 予測するロース芯画像データセットのパスを指定してください。
-#X_test = np.load(path + 'LoinDummy_mix_img_for_train_210104.npy')
+X_test = np.load(path + 'LoinDummy_mix_img_for_train_210104.npy')
 #X_test = np.load('D:/Documents/gifu_data/keras2020/gifu_H17-H25_BMS_market1_img_test.npy')
-X_test = np.load(path + 'LoinImg_for_predict.npy')
 
 # 任意の試験名を指定してください。
-testname = 'LoinDummy_mix_201223_predict_gifu_all_210105'
+testname = 'LoinDummy_mix_predict_210104'
 
 # 学習済みモデルの読み込み。
 # .hdf5ファイルのパスを指定してください。 
-model = load_model(path + 'weights/model_LoinDummy_mix_train_201223.hdf5')
+model = load_model(path + 'weights/model_LoinDummy_mix_train_210104.hdf5')
 
 X_test = np.expand_dims(X_test, axis=-1)
 
